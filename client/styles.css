@@ -1,0 +1,37 @@
+.homeWrapper
+{
+    display: inline;
+    text-align: center;
+    margin:auto;
+    height: 150px;
+    width: 300px;
+    position: fixed;
+    padding: 10px 10px;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    border: 1px solid black;
+}
+
+.createGame
+{
+    margin-top: 15px;
+}
+
+.joinGame
+{
+    margin-top: 15px;
+
+}
+
+.joinBtn
+{
+    margin-top: 10px;
+
+}
+
+.gameTitle
+{
+    font-size: 28px;
+}

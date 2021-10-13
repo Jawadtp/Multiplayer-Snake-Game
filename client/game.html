@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+    <div class="homeWrapper" id="homeScreen">
+        <div class="gameTitle">
+            Multiplayer Snake Game  
+        </div>
+
+        <div class="createGame">
+            <input type="button" id ="createGameBtn" value="Create new game">
+        </div>
+
+        <div class="joinGame">
+            <input type="text" id="gameCodeText" placeholder="Enter gamecode">
+
+            <div class="joinBtn">
+                <input type="button" id="joinGameBtn" value="Join game">
+            </div>
+
+        </div>
+    </div>
+
+    <div id="gameScreen" style="display: none;">
+        <canvas id="canvas">
+
+        </canvas>
+    </div>
+    
+    <script src="https://cdn.socket.io/4.2.0/socket.io.min.js" integrity="sha384-PiBR5S00EtOj2Lto9Uu81cmoyZqR57XcOna1oAuVuIEjzj0wpqDVfD0JA9eXlRsj" crossorigin="anonymous"></script>
+    <script src='game.js'></script>
+</body>
+</html>
