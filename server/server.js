@@ -41,10 +41,10 @@ io.on('connection', socket =>
 
     function handleJoinGame(roomName)
     {
-        const room = io.sockets.adapter.rooms[gameCode]
+        const room = io.sockets.adapter.rooms[roomName]
         let allUsers
 
-        if(rooms)
+     /*   if(room)
             allUsers=room.sockets
         
         let numclients = 0
@@ -53,7 +53,7 @@ io.on('connection', socket =>
 
         if(numclients===0)
         {
-            client.emit('unknownRoom')
+            socket.emit('unknownRoom')
             return
         }
 
@@ -62,17 +62,21 @@ io.on('connection', socket =>
             client.emit('tooManyPlayers')
             return
         }
+*/
+        clientRooms[socket.id] = roomName
+        socket.join(roomName)
+        socket.number = 2
+        socket.emit('init', 2)
 
-        clientRooms[client.id] = gameCode
-        client.join(gameCode)
-        client.number = 2
-        client.emit('init', 2)
-
-        stateGameInterval(gameCode)
+        stateGameInterval(roomName)
     }
 
     function handleKeydown(keyCode)
     {
+        const roomName = clientRooms[socket.id]
+
+        if(!roomName) return
+
         try
         {
             keyCode = parseInt(keyCode)
@@ -85,8 +89,8 @@ io.on('connection', socket =>
 
         const vel = getUpdatedVelocity(keyCode)
         
-        if(vel && vel.x!=state.player.vel.x && vel.y!=state.player.vel.y) //We dont want the snake to move down and collide with itself if it is already moving up.
-            state.player.vel = vel
+        if(vel && vel.x!=state[roomName].players[socket.number-1].vel.x && vel.y!=state[roomName].players[socket.number-1].vel.y) //We dont want the snake to move down and collide with itself if it is already moving up.
+            state[roomName].players[socket.number-1].vel = vel
     }
 
 })  
